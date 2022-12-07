@@ -1,7 +1,7 @@
 <h2>Create Stock Form</h2>
 
 <div class="form-group">
-  <form (ngSubmit)="createStock()">
+  <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
     <div>
       The following element change from green to red when it is invalid
     </div>
@@ -9,8 +9,10 @@
       <input type="text"
              placeholder="Stock Name"
              name="stockName"
+             #stockName="ngModel" 
              required
              [(ngModel)]="stock.name">
+             <!-- #stockName="ngModel" and others are added to carry value to stockForm -->
     </div>
     <div>
       The following element change from green to red when has been modified
@@ -19,7 +21,18 @@
       <input type="text"
              placeholder="Stock Code"
              name="stockCode"
+             #stockCode="ngModel" 
+             required
+             minlength="2"
              [(ngModel)]="stock.code">
+    </div>
+    <div *ngIf="stockCode.dirty && stockCode.invalid">
+      <div *ngIf="stockCode.errors?.['required']">
+        Stock code is mandatory
+      </div>
+      <div *ngIf="stockCode.errors?.['minlength']">
+        Stock code must be at least length 2
+      </div>
     </div>
     <div>
       The following element change from green to red when it is visited by user (regardless of change)
@@ -28,8 +41,13 @@
       <input type="number"
              placeholder="Stock Price"
              name="stockPrice"
+             #stockPrice="ngModel" 
              [ngModel]="stock.price"
+             required
              (ngModelChange)="setStockPrice($event)">
+    </div>
+    <div *ngIf="stockPrice.dirty && stockPrice.invalid">
+      Stock price is mandatory
     </div>
     <div class="stock-exchange">
       <div>
