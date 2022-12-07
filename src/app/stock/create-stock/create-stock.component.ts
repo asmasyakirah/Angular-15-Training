@@ -27,6 +27,7 @@ export class CreateStockComponent {
 
     if (stockForm.valid)
     {
+      this.stock = stockForm.value.stock;
       console.log('Stock Form is valid');
     }
     else
