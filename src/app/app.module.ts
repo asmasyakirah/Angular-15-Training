@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { StockItemComponent } from './stock/stock-item/stock-item.component';
 import { CreateStockComponent } from './stock/create-stock/create-stock.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+// import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +17,9 @@ import { CreateStockComponent } from './stock/create-stock/create-stock.componen
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    // HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

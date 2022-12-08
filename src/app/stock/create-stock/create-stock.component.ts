@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Stock } from 'src/app/model/stock';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create-stock',
@@ -11,6 +12,9 @@ export class CreateStockComponent {
   public stock: Stock;
   public confirmed = false;
   public exchanges = ['NYSE', 'NASDAQ', 'OTHER'];
+
+  public nameControl = new FormControl();
+
   constructor() {
     this.stock =  new Stock('test', 'TS', 0, 0, 'NASDAQ');
   }
