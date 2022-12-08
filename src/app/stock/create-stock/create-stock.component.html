@@ -1,31 +1,24 @@
 <h2>Create Stock Form</h2>
 
 <div class="form-group">
-  <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
-    <div ngModelGroup="stock">
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
     <!-- <div>
       The following element change from green to red when it is invalid
     </div> -->
     <div class="stock-name">
       <input type="text"
              placeholder="Stock Name"
-             name="name"
-             [formControl]="nameControl"
-             ngModel
-             required>
+             formControlName="name">
              <!-- #stockName="ngModel" and others are added to carry value to stockForm -->
     </div>
     <!-- <div>
       The following element change from green to red when has been modified
     </div> -->
-    <!-- <div class="stock-code">
+    <div class="stock-code">
       <input type="text"
              placeholder="Stock Code"
-             name="code"
-             ngModel
-             required
-             minlength="2">
-    </div> -->
+             formControlName="code">
+    </div>
     <!-- <div *ngIf="stockCode.dirty && stockCode.invalid">
       <div *ngIf="stockCode.errors?.['required']">
         Stock code is mandatory
@@ -37,13 +30,11 @@
     <!-- <div>
       The following element change from green to red when it is visited by user (regardless of change)
     </div> -->
-    <!-- <div class="stock-price">
+    <div class="stock-price">
       <input type="number"
              placeholder="Stock Price"
-             name="price"
-             ngModel
-             required>
-    </div> -->
+             formControlName="price">
+    </div>
     <!-- <div *ngIf="stockPrice.dirty && stockPrice.invalid">
       Stock price is mandatory
     </div> -->
@@ -60,14 +51,13 @@
              [(ngModel)]="confirmed">
       I confirm that the information provided above is accurate!
     </div> -->    
-    <!-- <button type="submit">Create</button> -->   
-
-    </div>
+    <button type="submit">Create</button>   
   </form>
 </div>
 
-<h4>Stock Name is {{stock | json}}</h4>
-<h4>Data has been confirmed: {{confirmed}}</h4>
+<!-- <h4>Stock Name is {{stock | json}}</h4>
+<h4>Data has been confirmed: {{confirmed}}</h4> -->
 
 
-<p>Stock Name is: {{ nameControl.value }}</p>
+<p>Form Control value: {{ stockForm.value | json }}</p>
+<p>Form Control status: {{ stockForm.status | json }}</p>
